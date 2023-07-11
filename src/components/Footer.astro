@@ -11,17 +11,12 @@
 						Berggasse 5 <br />
 						Wilhering, 4073<br />
 						Österreich <br /><br />
-						<strong>Phone:</strong> +43 664 212 3494 <br />
-						<strong>Email:</strong> timhofmann01@gmail.com<br />
 					</p>
 				</div>
 
 				<div class="col-lg-2 col-md-6 footer-links">
 					<h4>Useful Links</h4>
 					<ul>
-						<li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
-						<li><i class="bx bx-chevron-right"></i> <a href="/#about">About us</a></li>
-						<li><i class="bx bx-chevron-right"></i> <a href="/#services">Services</a></li>
 						<li><i class="bx bx-chevron-right"></i> <a href="/tos">Terms of service</a></li>
 						<li><i class="bx bx-chevron-right"></i> <a href="/privacy">Privacy policy</a></li>
 					</ul>
@@ -32,16 +27,13 @@
 					<ul>
 						<li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
 						<li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-						<li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-						<li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-						<li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
 					</ul>
 				</div>
 
 				<div class="col-lg-4 col-md-6 footer-newsletter">
 					<h4>Join Our Newsletter</h4>
-					<p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-					<form action="" method="post"><input type="email" name="email" /><input type="submit" value="Subscribe" /></form>
+					<p>And receive the latest news and updates from our team.</p>
+					<form method="post"><input type="email" name="email" /><input type="button" value="Subscribe" /></form>
 				</div>
 			</div>
 		</div>
@@ -169,11 +161,28 @@
 
 	#footer .footer-newsletter form input[type='email'] {
 		border: 0;
+		outline: none;
 		padding: 4px 8px;
 		width: calc(100% - 100px);
 	}
 
 	#footer .footer-newsletter form input[type='submit'] {
+		position: absolute;
+		top: 0;
+		right: -2px;
+		bottom: 0;
+		border: 0;
+		background: none;
+		font-size: 15px;
+		padding: 0 22px;
+		background: #e43c5c;
+		color: #fff;
+		transition: 0.3s;
+		border-radius: 50px;
+		box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+	}
+
+	#footer .footer-newsletter form input[type='button'] {
 		position: absolute;
 		top: 0;
 		right: -2px;
