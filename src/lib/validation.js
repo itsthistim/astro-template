@@ -1,73 +1,65 @@
+import { parse } from 'path';
 import User from '../models/user';
 
-export function validateFirstname(firstname) {
+export async function registerValidation(firstname, lastname, username, email, password, passwordConfirmed, agreeTOS, optedIn) {
+	let messages = { firstname: '', lastname: '', username: '', email: '', password: '', passwordConfirmed: '', general: '' };
+
+	// firstname
 	if (typeof firstname !== 'string' || firstname.length < 1) {
-		return new Error("First name can't be empty");
+		messages.firstname = "First name can't be empty";
 	}
-	return true;
-}
 
-export function validateLastname(lastname) {
+	// lastname
 	if (typeof lastname !== 'string' || lastname.length < 1) {
-		return new Error("Last name can't be empty");
+		messages.lastname = "Last name can't be empty";
 	}
-	return true;
-}
 
-export async function validateUsername(username) {
+	// username
 	if (typeof username !== 'string' || username.length < 1) {
-		return new Error("Username can't be empty");
+		messages.username = "Username can't be empty";
 	} else if (isValidUsername(username) === false) {
-		return new Error('Username can only consist of letters, numbers, underscores, periods or hyphens');
+		messages.username = 'Username can only consist of letters, numbers, underscores, periods or hyphens';
 	} else if ((await usernameTaken(username)) === true) {
-		return new Error('Username is already taken');
+		messages.username = 'Username is already taken';
 	}
-	return true;
-}
 
-export async function validateEmail(email) {
+	// email
 	if (typeof email !== 'string' || email.length < 1) {
-		console.log('email empty');
-		return new Error("Email can't be empty");
+		messages.email = "Email can't be empty";
 	} else if (isValidEmail(email) === false) {
-		console.log('email invalid');
-		return new Error('Please enter a valid email address');
+		messages.email = 'Please enter a valid email address';
 	} else if ((await emailTaken(email)) === true) {
-		console.log('email taken');
-		return new Error('There is already an account with this email address');
+		messages.email = 'There is already an account with this email address';
 	}
 
-	console.log('email valid and not taken');
-	return true;
-}
-
-export function validatePassword(password) {
+	// password
 	if (typeof password !== 'string' || password.length < 1) {
-		return new Error('Please enter a password');
+		messages.password = "Password can't be empty";
 	} else if (isValidPassword(password) === false) {
-		return new Error('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter and one number');
+		messages.password = 'Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter and one number';
 	}
-	return true;
-}
 
-export function validatePasswordConfirmed(password, passwordConfirmed) {
+	// passwordConfirmed
 	if (typeof passwordConfirmed !== 'string' || passwordConfirmed.length < 1) {
-		return new Error('Please confirm your password');
+		messages.passwordConfirmed = "Please confirm your password";
 	} else if (password !== passwordConfirmed) {
-		return new Error('Passwords do not match');
+		messages.passwordConfirmed = 'Passwords do not match';
 	}
-	return true;
+
+	// agreeTOS
+	if (typeof agreeTOS !== 'string' || agreeTOS !== 'on') {
+		messages.general = 'You must agree to the Terms of Service';
+	}
+
+	// optedIn
+	if (parseInt(optedIn) !== 1 && parseInt(optedIn) !== 0) {
+		messages.general = 'You must either opt in or opt out of email notifications';
+	}
+
+	return messages;
 }
 
-export function validateOptedIn(optedIn) {
-	if (typeof optedIn !== 'string' || optedIn.length < 1) {
-		return new Error('Please either opt in or out of our newsletter');
-	}
-	return true;
-}
-
-
-// helper functions
+//#region Helper functions
 async function emailTaken(email) {
 	return (await User.getByEmail(email)) !== null;
 }
@@ -84,10 +76,11 @@ function isValidPassword(password) {
 	// at least 8 characters, at least one uppercase letter, one lowercase letter and one number
 	// return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password);
 
-	return true; // TODO: add password validation
+	return true; // TODO: add password requirements
 }
 
 function isValidUsername(username) {
 	// letters, numbers, underscores, periods or hyphens
 	return /^[a-zA-Z0-9_.-]*$/.test(username);
 }
+//#endregion
