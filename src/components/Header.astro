@@ -8,7 +8,8 @@ export interface Props {
 const { isIndex } = Astro.props;
 
 const cookie = Astro.cookies.get('user');
-const user = cookie.value ? await User.getById(cookie.value) : null;
+const user_id = cookie.value ? JSON.parse(cookie.value) : null;
+const user = user_id ? await User.getById(user_id) : null;
 ---
 
 <header id="header" class={isIndex ? 'fixed-top' : 'fixed-top header-inner-pages'}>
@@ -24,27 +25,30 @@ const user = cookie.value ? await User.getById(cookie.value) : null;
 				<li><a class="nav-link scrollto" href="/#services">Services</a></li>
 				<li><a class="nav-link scrollto" href="/#portfolio">Portfolio</a></li>
 				<li><a class="nav-link scrollto" href="/#team">Team</a></li>
+				<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
 				<li><a href="/blog">Blog</a></li>
-				<li class="dropdown">
-					<a href="#"><span>{user?.username ?? 'Drop Down'}</span> <i class="bi bi-chevron-down"></i></a>
-					<ul>
-						<li><a href="/login">Login</a></li>
-						<li><a href="/register">Register</a></li>
-						<li><a href="/logout">Logout</a></li>
+
+				{
+					user ? (
 						<li class="dropdown">
-							<a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+							<a href="#">
+								<span>{user?.username ?? 'Drop Down'}</span> <i class="bi bi-chevron-down" />
+							</a>
 							<ul>
-								<li><a href="#">Deep Drop Down 1</a></li>
-								<li><a href="#">Deep Drop Down 2</a></li>
-								<li><a href="#">Deep Drop Down 3</a></li>
-								<li><a href="#">Deep Drop Down 4</a></li>
-								<li><a href="#">Deep Drop Down 5</a></li>
+								<li><a href="#">Profile</a></li>
+								<li><a href="/logout">Logout</a></li>
 							</ul>
 						</li>
-						<li><a href="#">Drop Down 4</a></li>
-					</ul>
-				</li>
-				<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+					) : (
+						<li class="dropdown">
+							<a href="#"><span>{user?.username ?? 'Drop Down'}</span> <i class="bi bi-chevron-down" /></a>
+							<ul>
+								<li><a href="/login">Login</a></li>
+								<li><a href="/register">Register</a></li>
+							</ul>
+						</li>
+					)
+				}
 			</ul>
 			<i class="bi bi-list mobile-nav-toggle"></i>
 		</nav>
@@ -52,10 +56,6 @@ const user = cookie.value ? await User.getById(cookie.value) : null;
 </header>
 
 <style>
-	#logout-form {
-		display: none;
-	}
-
 	#header {
 		transition: all 0.5s;
 		z-index: 997;
