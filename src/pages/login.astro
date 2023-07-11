@@ -1,0 +1,323 @@
+---
+//#region Layouts & Components
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Breadcrumbs from '../components/Single/Breadcrumbs.astro';
+import BackToTop from '../components/BackToTop.astro';
+import Footer from '../components/Footer.astro';
+//#endregion
+
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Login' }];
+
+//#region Form Validation
+import User from '../models/user';
+import { compare } from 'bcrypt';
+
+let loading = null;
+let values = null;
+const errors = { usernameOrEmail: '', password: '' };
+if (Astro.request.method === 'POST') {
+	loading = true;
+	values = { usernameOrEmail: '', password: '' };
+	try {
+		const data = await Astro.request.formData();
+		const usernameOrEmail = data.get('usernameOrEmail');
+		const password = data.get('password');
+
+		// prevent clearing the input fields
+		Object.assign(values, { usernameOrEmail, password });
+
+		// get user by either email or username
+		let user = await User.getByEmail(usernameOrEmail);
+		if (!user) user = await User.getByUsername(usernameOrEmail);
+
+		// check if the user exists
+		if (!user) {
+			loading = false;
+			errors.usernameOrEmail = 'This user does not exist';
+		} else {
+			// check if the password is correct
+			if (!(await compare(password.toString(), user.password))) {
+				loading = false;
+				errors.password = 'You entered an incorrect password';
+			}
+		}
+
+		loading = false;
+
+		// if there are no errors, get the user and redirect to login
+		if (Object.values(errors).every((error) => error === '') === true) {
+			// save the user in a cookie
+			Astro.cookies.set('user', user.id, { expires: /* 1 day */ new Date(Date.now() + 86400000) });
+
+			return Astro.redirect('/');
+		}
+	} catch (error) {
+		loading = false;
+		if (error instanceof Error) {
+			console.error(error.message);
+		}
+	}
+}
+
+//#endregion
+---
+
+<Layout title="Register">
+	<Header isIndex={false} />
+	<Breadcrumbs crumbs={crumbs} />
+
+	<main id="main">
+		<section id="register" class="register">
+			<div class="container">
+				<div class="center">
+					<h2>Login</h2>
+					<h3>Sign into your <span>Account</span></h3>
+					<p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+				</div>
+
+				<div class="mx-auto mt-4" style="width: 388px;">
+					<div class="row">
+						<div class="flex-c-m">
+							<a href="/auth/google" class="btn btn-google">
+								<i class="fa-brands fa-google"></i>
+							</a>
+							<a href="/auth/github" class="btn btn-github">
+								<i class="fa-brands fa-github"></i>
+							</a>
+							<a href="/auth/discord" class="btn btn-discord-alt">
+								<i class="fa-brands fa-discord"></i>
+							</a>
+						</div>
+						<hr />
+
+						<form method="POST" role="form" class="login-form">
+							<div class="form-group">
+								<input type="text" class="form-control rounded" name="usernameOrEmail" id="usernameOrEmail" placeholder="Username / Email" required value={values?.usernameOrEmail} />
+								{errors.usernameOrEmail && <div class="text-danger">{errors.usernameOrEmail}</div>}
+							</div>
+							<div class="form-group mt-3">
+								<input type="password" class="form-control rounded" name="password" id="password" placeholder="Password" required value={values?.password} />
+								{errors.password && <div class="text-danger">{errors.password}</div>}
+							</div>
+
+							<div class="my-3">
+								{loading === true && <div class="rounded loading">Loading...</div>}
+								{loading === false && Object.keys(errors).every((key) => errors[key] === '') && <div class="rounded sent-message">Logged in!</div>}
+							</div>
+
+							<div class="text-center"><button type="submit">Sign In</button></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<Footer />
+<BackToTop />
+
+<style>
+	.btn {
+		margin: 0px 30px 5px;
+	}
+
+	i {
+		font-size: 30px;
+		color: #444;
+		line-height: 1;
+		-webkit-transition: 0.3s;
+		transition: 0.3s;
+	}
+
+	i:hover {
+		color: var(--primary);
+	}
+
+	.flex-c-m {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		justify-content: center;
+		-ms-align-items: center;
+		align-items: center;
+	}
+
+	.center {
+		text-align: center;
+	}
+
+	.center h2 {
+		font-size: 13px;
+		letter-spacing: 1px;
+		font-weight: 700;
+		padding: 8px 20px;
+		line-height: 1;
+		margin: 0;
+		background: #fdeff2;
+		color: #e43c5c;
+		display: inline-block;
+		text-transform: uppercase;
+		border-radius: 50px;
+	}
+
+	.center h3 {
+		margin: 15px 0 0 0;
+		font-size: 32px;
+		font-weight: 700;
+	}
+
+	.center h3 span {
+		color: #e43c5c;
+	}
+
+	.center p {
+		margin: 15px auto 0 auto;
+		font-weight: 600;
+	}
+
+	@media (min-width: 1024px) {
+		.center p {
+			width: 50%;
+		}
+	}
+
+	.register .info {
+		width: 100%;
+		background: #fff;
+	}
+
+	.register .info i {
+		font-size: 20px;
+		color: #e43c5c;
+		float: left;
+		width: 44px;
+		height: 44px;
+		background: #fdeff2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50px;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.register .info h4 {
+		padding: 0 0 0 60px;
+		font-size: 22px;
+		font-weight: 600;
+		margin-bottom: 5px;
+		color: #493c3e;
+	}
+
+	.register .info p {
+		padding: 0 0 0 60px;
+		margin-bottom: 0;
+		font-size: 14px;
+		color: #816a6e;
+	}
+
+	.register .info .email,
+	.register .info .phone {
+		margin-top: 40px;
+	}
+
+	.register .info .email:hover i,
+	.register .info .address:hover i,
+	.register .info .phone:hover i {
+		background: #e43c5c;
+		color: #fff;
+	}
+
+	.register .login-form {
+		width: 100%;
+		background: #fff;
+	}
+
+	.register .login-form .form-group {
+		padding-bottom: 8px;
+	}
+
+	.register .login-form .error-message {
+		color: #fff;
+		background: #ed3c0d;
+		text-align: left;
+		padding: 15px;
+		font-weight: 600;
+	}
+
+	.register .login-form .error-message br + br {
+		margin-top: 25px;
+	}
+
+	.register .login-form .sent-message {
+		color: #fff;
+		background: #18d26e;
+		text-align: center;
+		padding: 15px;
+		font-weight: 600;
+	}
+
+	.register .login-form .loading {
+		background: #fff;
+		text-align: center;
+		padding: 15px;
+	}
+
+	.register .login-form .loading:before {
+		content: '';
+		display: inline-block;
+		border-radius: 50%;
+		width: 24px;
+		height: 24px;
+		margin: 0 10px -6px 0;
+		border: 3px solid #18d26e;
+		border-top-color: #eee;
+		animation: animate-loading 1s linear infinite;
+	}
+
+	.register .login-form input,
+	.register .login-form textarea {
+		border-radius: 0;
+		box-shadow: none;
+		font-size: 14px;
+	}
+
+	.register .login-form input:focus,
+	.register .login-form textarea:focus {
+		border-color: #e43c5c;
+	}
+
+	.register .login-form input {
+		height: 44px;
+	}
+
+	.register .login-form textarea {
+		padding: 10px 12px;
+	}
+
+	.register .login-form button[type='submit'] {
+		background: #e43c5c;
+		border: 0;
+		padding: 10px 28px;
+		color: #fff;
+		transition: 0.4s;
+		border-radius: 50px;
+	}
+
+	.register .login-form button[type='submit']:hover {
+		background: #d01d3f;
+	}
+
+	@keyframes animate-loading {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+</style>

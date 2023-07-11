@@ -1,0 +1,46 @@
+---
+//#region Layouts & Components
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CallToAction from '../components/CallToAction.astro';
+import About from '../components/Index/About.astro';
+import Features from '../components/Index/Features.astro';
+import Hero from '../components/Index/Hero.astro';
+import Portfolio from '../components/Index/Portfolio.astro';
+import Services from '../components/Index/Services.astro';
+import Pricing from '../components/Index/Pricing.astro';
+import FAQ from '../components/Index/FAQ.astro';
+import Team from '../components/Index/Team.astro';
+import Contact from '../components/Index/Contact.astro';
+import Footer from '../components/Footer.astro';
+//#endregion
+
+const cookie = Astro.cookies.get('user');
+const user = cookie.value ? JSON.parse(cookie.value) : null;
+---
+
+<Layout title="Home">
+	<Header isIndex={true} />
+	<Hero />
+
+	<main id="main">
+		<About />
+		<Services />
+		<Features />
+		<CallToAction
+			title="Call To Action"
+			text="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			button="Call To Action"
+		/>
+		<Portfolio categories={['App', 'Card', 'Web']} />
+		<Pricing />
+		<FAQ />
+		<Team />
+		<Contact />
+	</main>
+	<!-- End #main -->
+
+	<Footer />
+
+	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+</Layout>
