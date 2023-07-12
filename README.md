@@ -1,6 +1,19 @@
 ## 🚀 Start Up
 
+### 🛸 Tools
+- [x] Install [Visual Studio Code](https://code.visualstudio.com/download)
+- [x] Install [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+
+
+### 🪐 Database
+- [x] Install [MariaDB](https://mariadb.org/download/?t=mariadb&p=mariadb)
+
+### 🌌 Backend
+- [x] Install [Git](https://git-scm.com/downloads)
+- [x] Install [Node.js](https://nodejs.org/en/download/)
+
 ```bash
+git clone https://github.com/itsthistim/astro-template.git
 npm install
 npm run dev
 ```
