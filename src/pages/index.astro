@@ -14,9 +14,6 @@ import Team from '../components/Index/Team.astro';
 import Contact from '../components/Index/Contact.astro';
 import Footer from '../components/Footer.astro';
 //#endregion
-
-const cookie = Astro.cookies.get('user');
-const user = cookie.value ? JSON.parse(cookie.value) : null;
 ---
 
 <Layout title="Home">
