@@ -1,20 +1,11 @@
-## 🚀 Project Structure
+## 🚀 Start Up
 
-Inside of your Astro project, you'll see the following folders and files:
+```bash
+npm install
+npm run dev
+```
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🐱‍🚀 Project Structure
 
 Astro looks for `.astro`, `.html` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
