@@ -1,19 +1,23 @@
-## 🚀 Start Up
+## 🛸 Prerequisites
 
-### 🛸 Tools
+### 🪐 Tools
 - [x] Install [Visual Studio Code](https://code.visualstudio.com/download)
 - [x] Install [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
 
-
-### 🪐 Database
+### 🌍 Database
 - [x] Install [MariaDB](https://mariadb.org/download/?t=mariadb&p=mariadb)
+- [x] Create a `.env` file based on [.env.example](https://github.com/itsthistim/astro-template/blob/main/.env.example) in the root of your project
+- [x] Create all needed tables by running the [SQL script](https://github.com/itsthistim/astro-template/blob/main/src/models/example.sql) or create your own
 
 ### 🌌 Backend
 - [x] Install [Git](https://git-scm.com/downloads)
 - [x] Install [Node.js](https://nodejs.org/en/download/)
 
+## 🚀 Start Up
+
 ```bash
 git clone https://github.com/itsthistim/astro-template.git
+cd astro-template
 npm install
 npm run dev
 ```
