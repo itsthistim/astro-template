@@ -11,11 +11,11 @@ const pool = createPool({
 
 pool.getConnection(function (err, conn) {
 	if (err) {
-		console.log('Error connecting to database!');
-		console.log(err);
+		console.error('Error connecting to database!');
+		console.error(err);
 		return;
 	}
-	console.log(`Connected to database ${pool.config.connectionConfig.database} on port ${pool.config.connectionConfig.port}`);
+	console.info(`Connected to database ${pool.config.connectionConfig.database} on port ${pool.config.connectionConfig.port}`);
 	pool.releaseConnection(conn);
 });
 
