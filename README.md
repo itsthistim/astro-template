@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-## 🐱‍🚀 Project Structure
+## ⭐ Project Structure
 
 Astro looks for `.astro`, `.html` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
