@@ -1,0 +1,285 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Table from '../components/Table.astro';
+import BackToTop from '../components/BackToTop.astro';
+import Breadcrumbs from '../components/Single/Breadcrumbs.astro';
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Search' }];
+
+import User from '../models/user';
+
+let errors = { username: '', general: '' };
+let values = { username: '' };
+let results = [];
+
+if (Astro.request.method === 'POST') {
+	try {
+		const data = await Astro.request.formData();
+		const username = data.get('username');
+
+		// prevent clearing the input fields
+		Object.assign(values, { username });
+
+		// if there are no errors, get the user and redirect to login
+		if (Object.values(errors).every((error) => error === '') === true) {
+			results = await User.search(username);
+
+			if (results.length === 0) {
+				Object.assign(errors, { username: 'Could not find a user with that username.' });
+			}
+		}
+	} catch (error) {
+		if (error instanceof Error) {
+			console.error(error.message);
+		}
+	}
+}
+---
+
+<Layout title="Search">
+	<Header isIndex={false} />
+	<Breadcrumbs crumbs={crumbs} />
+
+	<main id="main">
+		<section id="register" class="register">
+			<div class="container">
+				<div class="center">
+					<h2>Search</h2>
+					<h3>Find a <span>User</span></h3>
+					<p>Look through our database of users to find the one you're looking for.</p>
+				</div>
+
+				<div class="mx-auto mt-4 mb-4" style="width: 388px;">
+					<div class="row">
+						<form method="POST" role="form" class="login-form">
+							<div class="form-group">
+								<input type="text" class="form-control rounded center" name="username" id="username" placeholder="Username" required value={values?.username} />
+								{errors.username && <div class="text-danger">{errors.username}</div>}
+							</div>
+
+							<div class="text-center mt-3"><button type="submit">Search</button></div>
+						</form>
+					</div>
+				</div>
+
+				<div class="center mx-auto mt-5">
+					{
+						errors.general && (
+							<p class="text-danger">
+								<a href="/search">{errors.general}</a>
+							</p>
+						)
+					}
+
+					{results && results.length > 0 && <Table data={results} headers={{ id: '#', firstname: 'First', lastname: 'Last', username: 'Handle', email: 'Email' }} />}
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<BackToTop />
+
+<style>
+	.btn {
+		margin: 0px 30px 5px;
+	}
+
+	i {
+		font-size: 30px;
+		color: #444;
+		line-height: 1;
+		-webkit-transition: 0.3s;
+		transition: 0.3s;
+	}
+
+	i:hover {
+		color: var(--primary);
+	}
+
+	.flex-c-m {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		justify-content: center;
+		-ms-align-items: center;
+		align-items: center;
+	}
+
+	.center {
+		text-align: center;
+	}
+
+	.center h2 {
+		font-size: 13px;
+		letter-spacing: 1px;
+		font-weight: 700;
+		padding: 8px 20px;
+		line-height: 1;
+		margin: 0;
+		background: #fdeff2;
+		color: #e43c5c;
+		display: inline-block;
+		text-transform: uppercase;
+		border-radius: 50px;
+	}
+
+	.center h3 {
+		margin: 15px 0 0 0;
+		font-size: 32px;
+		font-weight: 700;
+	}
+
+	.center h3 span {
+		color: #e43c5c;
+	}
+
+	.center p {
+		margin: 15px auto 0 auto;
+		font-weight: 600;
+	}
+
+	@media (min-width: 1024px) {
+		.center p {
+			width: 50%;
+		}
+	}
+
+	.register .info {
+		width: 100%;
+		background: #fff;
+	}
+
+	.register .info i {
+		font-size: 20px;
+		color: #e43c5c;
+		float: left;
+		width: 44px;
+		height: 44px;
+		background: #fdeff2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50px;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.register .info h4 {
+		padding: 0 0 0 60px;
+		font-size: 22px;
+		font-weight: 600;
+		margin-bottom: 5px;
+		color: #493c3e;
+	}
+
+	.register .info p {
+		padding: 0 0 0 60px;
+		margin-bottom: 0;
+		font-size: 14px;
+		color: #816a6e;
+	}
+
+	.register .info .email,
+	.register .info .phone {
+		margin-top: 40px;
+	}
+
+	.register .info .email:hover i,
+	.register .info .address:hover i,
+	.register .info .phone:hover i {
+		background: #e43c5c;
+		color: #fff;
+	}
+
+	.register .login-form {
+		width: 100%;
+		background: #fff;
+	}
+
+	.register .login-form .form-group {
+		padding-bottom: 8px;
+	}
+
+	.register .login-form .error-message {
+		color: #fff;
+		background: #ed3c0d;
+		text-align: left;
+		padding: 15px;
+		font-weight: 600;
+	}
+
+	.register .login-form .error-message br + br {
+		margin-top: 25px;
+	}
+
+	.register .login-form .sent-message {
+		color: #fff;
+		background: #18d26e;
+		text-align: center;
+		padding: 15px;
+		font-weight: 600;
+	}
+
+	.register .login-form .loading {
+		background: #fff;
+		text-align: center;
+		padding: 15px;
+	}
+
+	.register .login-form .loading:before {
+		content: '';
+		display: inline-block;
+		border-radius: 50%;
+		width: 24px;
+		height: 24px;
+		margin: 0 10px -6px 0;
+		border: 3px solid #18d26e;
+		border-top-color: #eee;
+		animation: animate-loading 1s linear infinite;
+	}
+
+	.register .login-form input,
+	.register .login-form textarea {
+		border-radius: 0;
+		box-shadow: none;
+		font-size: 14px;
+	}
+
+	.register .login-form input:focus,
+	.register .login-form textarea:focus {
+		border-color: #e43c5c;
+	}
+
+	.register .login-form input {
+		height: 44px;
+	}
+
+	.register .login-form textarea {
+		padding: 10px 12px;
+	}
+
+	.register .login-form button[type='submit'] {
+		background: #e43c5c;
+		border: 0;
+		padding: 10px 28px;
+		color: #fff;
+		transition: 0.4s;
+		border-radius: 50px;
+	}
+
+	.register .login-form button[type='submit']:hover {
+		background: #d01d3f;
+	}
+
+	@keyframes animate-loading {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+</style>

@@ -1,0 +1,53 @@
+---
+export interface Props {
+	data: any;
+	headers?: any;
+}
+
+const {
+	data,
+	// Create object with keys equal to the values of the first object in data
+	headers = Object.keys(data[0]).reduce((accumulated, current) => {
+		accumulated[current] = current;
+		return accumulated;
+	}, {})
+} = Astro.props;
+---
+
+<div class="table-responsive">
+	<table class="table table-hover">
+		<caption><a href="/search">{data.length} results found</a></caption>
+		<thead>
+			<tr>
+				{
+					Object.keys(data[0]).map((key) => {
+						if (headers[key]) {
+							return <th>{headers[key]}</th>;
+						}
+					})
+				}
+			</tr>
+		</thead>
+		<tbody>
+			{
+				data.map((row) => {
+					return (
+						<tr>
+							{Object.keys(row).map((key, i) => {
+								if (headers[key]) {
+									if (i === 0) {
+										return <th scope="row">{row[key]}</th>;
+									} else {
+										return <td>{row[key]}</td>;
+									}
+								}
+							})}
+						</tr>
+					);
+				})
+			}
+		</tbody>
+	</table>
+</div>
+
+<style></style>
