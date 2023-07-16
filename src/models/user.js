@@ -28,7 +28,7 @@ export default class User {
 		if (rows.length === 0) return null;
 		return new User(rows[0].id, rows[0].firstname, rows[0].lastname, rows[0].username, rows[0].email, rows[0].password, rows[0].opted_in);
 	}
-	
+
 	static async getByEmail(email) {
 		const [rows] = await db.query('SELECT * FROM user WHERE email = ?', [email]);
 		if (rows.length === 0) return null;
@@ -62,9 +62,27 @@ export default class User {
 
 		return this;
 	}
-	
+
 	async delete() {
 		const [rows] = await db.query('DELETE FROM user WHERE id = ?', [this.id]);
 		return this;
+	}
+
+	static async search(searchTerm) {
+		const [users] = await db.query('SELECT * FROM user');
+		let result = [];
+
+		users.filter((user) => {
+			if (
+				user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				user.lastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				user.email.toLowerCase().includes(searchTerm.toLowerCase())
+			) {
+				result.push(user);
+			}
+		});
+
+		return result;
 	}
 }

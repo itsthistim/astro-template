@@ -1,17 +1,9 @@
 ---
 export interface Props {
 	data: any;
-	headers?: any;
 }
 
-const {
-	data,
-	// Create object with keys equal to the values of the first object in data
-	headers = Object.keys(data[0]).reduce((accumulated, current) => {
-		accumulated[current] = current;
-		return accumulated;
-	}, {})
-} = Astro.props;
+const { data } = Astro.props;
 ---
 
 <div class="table-responsive">
@@ -20,10 +12,8 @@ const {
 		<thead>
 			<tr>
 				{
-					Object.keys(data[0]).map((key) => {
-						if (headers[key]) {
-							return <th>{headers[key]}</th>;
-						}
+					Object.keys(data[0]).map((key, i) => {
+						return <th>{key}</th>;
 					})
 				}
 			</tr>
@@ -34,13 +24,7 @@ const {
 					return (
 						<tr>
 							{Object.keys(row).map((key, i) => {
-								if (headers[key]) {
-									if (i === 0) {
-										return <th scope="row">{row[key]}</th>;
-									} else {
-										return <td>{row[key]}</td>;
-									}
-								}
+								return <td>{row[key]}</td>;
 							})}
 						</tr>
 					);
