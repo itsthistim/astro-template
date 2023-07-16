@@ -54,7 +54,7 @@ if (Astro.request.method === 'POST') {
 					<div class="row">
 						<form method="POST" role="form" class="login-form">
 							<div class="form-group">
-								<input type="text" class="form-control rounded center" name="username" id="username" placeholder="Username" required value={values?.username} />
+								<input type="text" class="form-control rounded center" name="username" id="username" placeholder="Username" value={values?.username} />
 								{errors.username && <div class="text-danger">{errors.username}</div>}
 							</div>
 

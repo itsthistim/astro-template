@@ -31,10 +31,16 @@ const { data } = Astro.props;
 							{
 								// cell values
 								Object.keys(row).map((key, i) => {
-									return <td>{row[key]}</td>;
+									if (key === 'Handle') {
+										return <td>@{row[key]}</td>;
+									} else {
+										return <td>{row[key]}</td>;
+									}
 								})
 							}
-							<td><a href={`/${row[Object.keys(row)[3]]}`}>View</a></td>
+							<td>
+								<a href={`/${row[Object.keys(row)[3]]}`}>View</a>
+							</td>
 						</tr>
 					);
 				})
