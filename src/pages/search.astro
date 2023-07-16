@@ -34,6 +34,7 @@ if (Astro.request.method === 'POST') {
 		}
 	}
 }
+
 ---
 
 <Layout title="Search">
@@ -62,17 +63,18 @@ if (Astro.request.method === 'POST') {
 					</div>
 				</div>
 
-				<div class="center mx-auto mt-5">
+				<div class="mx-auto mt-5">
 					{
 						errors.general && (
-							<p class="text-danger">
+							<p class="text-danger center" style="font-weight: 600;">
 								<a href="/search">{errors.general}</a>
 							</p>
 						)
 					}
 
-					{results && results.length > 0 && <Table data={results} headers={{ id: '#', firstname: 'First', lastname: 'Last', username: 'Handle', email: 'Email' }} />}
+					{results && results.length > 0 && <Table data={results} />}
 				</div>
+
 			</div>
 		</section>
 	</main>

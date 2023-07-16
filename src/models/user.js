@@ -69,15 +69,15 @@ export default class User {
 	}
 
 	static async search(searchTerm) {
-		const [users] = await db.query('SELECT * FROM user');
+		const [users] = await db.query('SELECT u.id as "#", u.firstname as "First", u.lastname as "Last", u.username as "Handle", u.email as "Email" FROM user u');
 		let result = [];
 
 		users.filter((user) => {
 			if (
-				user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-				user.lastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-				user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-				user.email.toLowerCase().includes(searchTerm.toLowerCase())
+				user.First.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				user.Last.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				user.Handle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				user.Email.toLowerCase().includes(searchTerm.toLowerCase())
 			) {
 				result.push(user);
 			}

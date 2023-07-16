@@ -8,24 +8,33 @@ const { data } = Astro.props;
 
 <div class="table-responsive">
 	<table class="table table-hover">
-		<caption><a href="/search">{data.length} results found</a></caption>
+		<!-- Show result count or 0 if nothing found -->
+		<caption><a href="/search">{data ? data.length : 0} results found</a></caption>
 		<thead>
 			<tr>
 				{
+					// header values
 					Object.keys(data[0]).map((key, i) => {
 						return <th>{key}</th>;
 					})
 				}
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			{
+				// row values
 				data.map((row) => {
 					return (
 						<tr>
-							{Object.keys(row).map((key, i) => {
-								return <td>{row[key]}</td>;
-							})}
+							{
+								// cell values
+								Object.keys(row).map((key, i) => {
+									return <td>{row[key]}</td>;
+								})
+							}
+							<td><a href={`/${row[Object.keys(row)[3]]}`}>View</a></td>
 						</tr>
 					);
 				})
