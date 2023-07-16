@@ -11,6 +11,10 @@ let users = await User.getAll();
 
 const { username } = Astro.params;
 const user = users.find((user) => user.username === username);
+
+if (!user) {
+	return Astro.redirect('/search');
+}
 ---
 
 <Layout title={user ? user.username : 'User'} />

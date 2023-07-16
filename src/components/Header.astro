@@ -35,7 +35,7 @@ const user = user_id ? await User.getById(user_id) : null;
 								<span>{user?.username ?? 'Drop Down'}</span> <i class="bi bi-chevron-down" />
 							</a>
 							<ul>
-								<li><a href="#">Profile</a></li>
+								<li><a href={`/${user?.username}`}>Profile</a></li>
 								<li><a href="/logout">Logout</a></li>
 							</ul>
 						</li>
