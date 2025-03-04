@@ -1,22 +1,30 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+	title: string;
+	transitions?: boolean;
+}
+
+const { title, transitions = true } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
+		{transitions && <ClientRouter fallback="none" />}
 		<meta charset="UTF-8" />
+		<meta name="description" content="This is my personal website!" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="darkreader-lock" />
+		<link rel="icon" type="image/svg+xml" href="/favicon_T.svg" />
+		<title>{title}</title>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<style></style>
