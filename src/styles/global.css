@@ -1,12 +1,24 @@
 :root {
+	color-scheme: light dark;
+
+	/* Colors */
+	--color-background: light-dark(#f6f7f8, #1a1a1a);
+
+	--color-text: light-dark(#222222, #dadada);
+	--color-link: #5151e6;
+	--color-code: var(--color-text);
+	--color-code-background: light-dark(#f6f7f8, #282c34);
+
+	/* Typography */
 	--font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 	--font-serif: 'Noto Serif', serif;
 	--font-mono: 'JetBrains Mono', monospace;
 
-	--text-color: white;
-	--link-color: var(--cyan-50);
-	--code-color: var(--text-color);
-	--code-background: var(--slate-30);
+	/* Borders */
+	--radius-s: 4px;
+	--radius-m: 8px;
+	--radius-l: 10px;
+	--radius-xl: 16px;
 }
 
 /* Styles */
@@ -41,6 +53,7 @@ a:hover,
 a:active {
 	color: var(--link-color-hover);
 }
+
 pre {
 	padding: 0.5rem;
 	border-radius: var(--radius-s);
