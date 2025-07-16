@@ -1,13 +1,65 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Code } from "astro:components";
 import { Icon } from "astro-icon/components";
+
+const codeSample = `function greet(name: string) {
+	return "Hello " + name;
+}
+console.log(greet("World")); // Prints "Hello World"
+`;
 ---
 
 <Layout title="Hello World!">
-	<h1>Hello World! <Icon name="mdi:world" width="24px" is:inline={true} /></h1>
+	<main>
+		<h1>Hello World! <Icon name="ph:globe-hemisphere-west" /></h1>
+
+		<p class="sans">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi expedita minus architecto nulla magni distinctio voluptate adipisci omnis officiis praesentium eligendi, minima
+			maxime numquam? Sequi consequuntur ex nisi veritatis nobis? Repellat eos nulla, quas laudantium ipsam velit recusandae? Esse aliquid reprehenderit illo a ducimus eligendi eveniet
+			dolorum quisquam, voluptatum, labore itaque doloribus molestias! Quas cupiditate ratione laboriosam sint recusandae, deserunt architecto dolore rerum enim perspiciatis incidunt
+			dolorum officia repellendus odio minima fugit ducimus necessitatibus totam nemo maiores repellat aut velit. Eaque quae ratione nulla necessitatibus officia obcaecati eius libero
+			accusamus architecto recusandae, consequuntur incidunt accusantium molestias doloribus molestiae! Perferendis nisi, iure dolor praesentium rerum laudantium eveniet assumenda
+			beatae illo nemo ullam, cupiditate maxime fugit.
+		</p>
+		<Code code={codeSample} lang="ts" theme="catppuccin-mocha" />
+		<p class="serif">
+			Amet necessitatibus provident ipsam illum ex natus aspernatur et sequi ab veniam blanditiis, nisi maxime, quisquam quaerat reiciendis dolorem id voluptatibus illo? Rerum id
+			aperiam vero rem voluptas non necessitatibus eveniet, soluta fugiat unde consequuntur nemo voluptate beatae sapiente dolorum distinctio sunt reiciendis libero perferendis
+			molestias aspernatur cupiditate expedita quas autem. Distinctio quam magnam perferendis nulla obcaecati? Veritatis esse id nemo eveniet dolore dolores reiciendis quasi fuga
+			facere inventore tempora laudantium pariatur, enim praesentium excepturi obcaecati iste laborum eos! Similique cum impedit porro quod, hic corrupti expedita sint in saepe aperiam
+			est quisquam commodi eos odio id doloremque sunt.
+		</p>
+		<p class="code">
+			Et, cumque! Quisquam, voluptates. Doloribus, asperiores. Doloremque, cumque. Quasi, nobis. Doloribus, cumque. Quasi, nobis. Doloribus, cumque. Quasi, nobis. Doloribus, cumque.
+			Quasi, nobis. Doloribus, cumque. Quasi, nobis.
+		</p>
+	</main>
+
+	<style>
+		main {
+			margin: auto 50px;
+		}
+
+		h1 {
+			font-size: 2.5rem;
+			margin-bottom: 1rem;
+		}
+
+		p {
+			margin-bottom: 1rem;
+		}
+
+		.sans {
+			font-family: var(--font-sans);
+		}
+
+		.code {
+			font-family: var(--font-mono);
+		}
+
+		.serif {
+			font-family: var(--font-serif);
+		}
+	</style>
 </Layout>
-
-<style>
-
-
-</style>
