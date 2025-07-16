@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 
-/* Reset margins */
+/* Margins */
 body,
 h1,
 h2,
@@ -20,20 +20,24 @@ picture {
     margin: 0;
 }
 
-/* set up the body */
+/* Body */
 body {
     line-height: 1.5;
     min-height: 100vh;
 }
 
-/* make images easier to work with */
+/* Images */
 img,
 picture {
     max-width: 100%;
     display: block;
 }
 
-/* make form elements easier to work with */
+svg {
+    vertical-align: -0.125em;
+}
+
+/* Form Elements */
 input,
 button,
 textarea,
@@ -41,7 +45,13 @@ select {
     font: inherit;
 }
 
-/* remove animations for people who've turned them off */
+/* Code */
+pre {
+    tab-size: 4;
+    -moz-tab-size: 4;
+}
+
+/* remove animations for reduced motion setting */
 @media (prefers-reduced-motion: reduce) {
 
     *,
