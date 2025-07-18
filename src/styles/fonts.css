@@ -1,7 +1,39 @@
 @font-face {
-	font-family: 'JetBrains Mono';
-	src: url('/fonts/JetBrainsMono.ttf') format('truetype');
-	font-style: normal;
-	font-weight: normal;
-	font-display: swap;
+    font-family: 'JetBrains Mono';
+    src: url('/fonts/JetBrainsMono.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans-Italic.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Serif';
+    src: url('/fonts/NotoSerif-Italic.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Serif';
+    src: url('/fonts/NotoSerif.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
 }
