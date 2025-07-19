@@ -1,5 +1,5 @@
 # Stage 1: Build the Astro project
-FROM node:20-alpine AS build
+FROM node:22-alpine AS build
 RUN npm install -g pnpm@latest
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
