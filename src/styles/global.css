@@ -1,83 +1,84 @@
 :root {
-	/* Colors */
-	--color-background: light-dark(#f6f7f8, #1a1a1a);
+  /* Colors */
+  --color-background: light-dark(#f6f7f8, #1a1a1a);
 
-	--color-text: light-dark(#222222, #dadada);
-	--color-link: #5151e6;
-	--color-code: var(--color-text);
-	--color-code-background: light-dark(#f6f7f8, #282c34);
+  --color-text: light-dark(#222222, #dadada);
+  --color-link: #5151e6;
+  --color-code: var(--color-text);
+  --color-code-background: light-dark(#f6f7f8, #282c34);
 
-	/* Typography */
-	--font-sans: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-	--font-serif: 'Noto Serif', serif;
-	--font-mono: 'JetBrains Mono', monospace;
+  /* Typography */
+  --font-sans: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-serif: "Noto Serif", serif;
+  --font-mono: "JetBrains Mono", monospace;
 
-	/* Borders */
-	--radius-s: 4px;
-	--radius-m: 8px;
-	--radius-l: 10px;
-	--radius-xl: 16px;
+  /* Borders */
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 10px;
+  --radius-xl: 16px;
 }
 
 /* Styles */
 
 body {
-	font-family: var(--font-sans);
+  font-family: var(--font-sans);
 }
 
 ::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: light-dark(#606060, #ababab);
-	border-radius: 8px;
+  background-color: light-dark(#606060, #ababab);
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: light-dark(#8a8a8a, #7c7c7d);
+  background-color: light-dark(#8a8a8a, #7c7c7d);
 }
 
 ::-webkit-scrollbar-track {
-	background-color: transparent;
+  background-color: transparent;
 }
 
 a {
-	color: var(--link-color);
+  color: var(--link-color);
 }
 
 a:hover,
 a:active {
-	color: var(--link-color-hover);
+  color: var(--link-color-hover);
 }
 
 pre {
-	padding: 0.5rem;
-	border-radius: var(--radius-s);
+  padding: 0.5rem;
+  border-radius: var(--radius-s);
 }
 
 .expressive-code,
 code {
-	font-family: 'JetBrains Mono', monospace !important;
+  font-family: "JetBrains Mono", monospace !important;
 }
 
 .expressive-code {
-	margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 hr {
-	border: none;
-	height: 1px;
-	width: 98%;
-	background: var(--text-color);
-	opacity: 0.2;
-	margin: 2rem auto;
+  border: none;
+  height: 1px;
+  width: 98%;
+  background: var(--text-color);
+  opacity: 0.2;
+  margin: 2rem auto;
 }
 
 .text-gradient {
-	background-image: linear-gradient(90deg, var(--cyan-50), var(--lavender-80));
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, var(--cyan-50), var(--lavender-80));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
