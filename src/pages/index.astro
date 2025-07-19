@@ -1,25 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Code } from "astro:components";
 import { Icon } from "astro-icon/components";
+import { Code } from "astro-expressive-code/components";
 
 const codeSample = `function greet(name: string) {
 	return "Hello " + name;
 }
 
-console.log(greet("World")); // Prints "Hello World"
+console.log(greet("World")); // Prints "Hello World" 0 1 2 3
 `;
 ---
 
 <Layout title="Hello World!">
 	<main>
 		<h1>Hello World! <Icon name="ph:globe-hemisphere-west" /></h1>
-		<Code code={codeSample} lang="ts" theme="catppuccin-mocha" />
-
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, nobis.</p>
-		<p class="serif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, nobis.</p>
-		<p><i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, nobis.</i></p>
-		<p class="serif"><i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, nobis.</i></p>
+		<Code code={codeSample} lang="ts" />
+		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis ipsum magni nihil dolorum consequuntur et, natus asperiores quas saepe nam aliquam!</p>
+		<p class="serif">Tempora exercitationem porro facilis sequi quod molestias fugiat earum corrupti officia, dolorem, ipsum mollitia ipsam, odio expedita laborum quidem natus optio aspernatur atque incidunt architecto. Quidem quam inventore cupiditate alias minima ea voluptatum dolor, dolores necessitatibus voluptas distinctio.</p>
+		<p><i>Neque nemo iure, consequuntur magni saepe debitis eius esse accusamus aliquam ea quae odio possimus. Quis in perferendis, itaque deserunt repudiandae nisi hic id necessitatibus quia fugiat officia!</i></p>
+		<p class="serif"><i>Laboriosam nostrum iusto veritatis rem culpa ullam labore libero repellendus omnis suscipit, numquam at odio sint eligendi eos qui ducimus modi repudiandae cumque laudantium optio recusandae ab temporibus impedit. Accusantium, porro esse dolores repellendus numquam consequatur quasi temporibus, perferendis iste ipsam in vel.</i></p>
 	</main>
 </Layout>
 
