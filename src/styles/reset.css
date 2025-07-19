@@ -1,21 +1,21 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 html {
-  color-scheme: light dark;
-  hanging-punctuation: first last;
+	color-scheme: light dark;
+	hanging-punctuation: first last;
 }
 
 body {
-  min-height: 100svh;
+	min-height: 100svh;
 }
 
 /* Typography */
@@ -26,11 +26,11 @@ h3,
 h4,
 h5,
 h6 {
-  text-wrap: balance;
+	text-wrap: balance;
 }
 
 p {
-  text-wrap: pretty;
+	text-wrap: pretty;
 }
 
 /* Form Elements */
@@ -38,40 +38,40 @@ input,
 button,
 textarea,
 select {
-  font: inherit;
+	font: inherit;
 }
 
 /* Images & Videos */
 img,
 picture,
 video {
-  display: block;
-  max-width: 100%;
+	display: block;
+	max-width: 100%;
 }
 
 svg {
-  vertical-align: -0.125em;
+	vertical-align: -0.125em;
 }
 
 /* Scroll behaviours */
 :has(:target) {
-  scroll-margin-top: 2rem;
+	scroll-margin-top: 2rem;
 }
 
 @media (prefers-reduced-motion: none) {
-  :has(:target) {
-    scroll-behavior: smooth;
-  }
+	:has(:target) {
+		scroll-behavior: smooth;
+	}
 }
 
 /* remove animations for reduced motion setting */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }

@@ -5,10 +5,10 @@ import expressiveCode from "astro-expressive-code";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    icon(),
-    expressiveCode({
-      themes: ["catppuccin-latte", "catppuccin-mocha"],
-    }),
-  ],
+	integrations: [
+		icon(),
+		expressiveCode({
+			themes: ["catppuccin-latte", "catppuccin-mocha"]
+		})
+	]
 });
