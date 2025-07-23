@@ -15,9 +15,6 @@ When you use this template for a new site, make sure to update the following val
 
 - **[docker-compose.yml](https://github.com/itsthistim/astro-template/blob/master/docker-compose.yml)**: Change `image` and `container_name` to match your new project, and adjust ports if necessary.
 
-- **nginx.conf**: Change `server_name` to your domain(s), and update the port and SSL certificate paths if needed.
-
-
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
