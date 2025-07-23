@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
     app:
         image: astro-template
@@ -7,3 +7,7 @@ services:
         ports:
             - "80:80"
             - "443:443"
+        restart: unless-stopped
+        volumes:
+            - ./fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
+            - ./privkey.pem:/etc/nginx/ssl/privkey.pem:ro
