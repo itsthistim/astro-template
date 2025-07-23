@@ -4,7 +4,19 @@
 pnpm create astro@latest -- --template itsthistim/astro-template
 ```
 
+
 A minimal Astro template with Docker configuration, local fonts, somewhat opinionated default styles and a few useful components.
+
+## 📝 Using this template for your own project
+
+When you use this template for a new site, make sure to update the following values:
+
+- **[Dockerfile](https://github.com/itsthistim/astro-template/blob/master/Dockerfile)**: Update the nginx config filename to the corresponding rendering method your project uses (either `nginx.ssr.conf` or `nginx.static.conf`). You can delete the unused config file.
+
+- **[docker-compose.yml](https://github.com/itsthistim/astro-template/blob/master/docker-compose.yml)**: Change `image` and `container_name` to match your new project, and adjust ports if necessary.
+
+- **nginx.conf**: Change `server_name` to your domain(s), and update the port and SSL certificate paths if needed.
+
 
 ## 🧞 Commands
 
