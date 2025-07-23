@@ -20,6 +20,8 @@ pnpm-debug.log*
 .env.*
 !.env.example
 
+*.pem
+
 # IDE & OS specific files
 .DS_Store
 .idea/
