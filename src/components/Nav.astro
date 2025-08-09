@@ -1,0 +1,76 @@
+---
+import { Icon } from "astro-icon/components";
+import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
+---
+
+<div class="navbar">
+	<nav>
+		<div class="logo"><Icon name="ph:planet" width={24} height={24} /> Lorem Ipsum</div>
+		<ul>
+			<li><a href="/">Dolor</a></li>
+			<li><a href="/">Sit Amet</a></li>
+		</ul>
+	</nav>
+	<div class="right-section">
+		<div class="profile">
+			<Icon name="ph:user-circle" width={32} height={32} />
+		</div>
+		<ThemeSwitcher />
+	</div>
+</div>
+
+<style>
+	.navbar {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		gap: 1rem;
+		padding: 1.6rem;
+		z-index: 1000;
+		position: sticky;
+		top: 0;
+	}
+
+	nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+		backdrop-filter: blur(5px);
+		padding: 10px;
+		border-radius: 50px;
+		min-width: 570px;
+		grid-column: 2;
+	}
+
+	.right-section {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		justify-self: end;
+		grid-column: 3;
+	}
+
+	ul {
+		list-style: none;
+		display: flex;
+		gap: 1.5rem;
+		padding: 0 1.5rem;
+	}
+
+	a {
+		color: light-dark(#000, #fff);
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+
+	a:hover {
+		color: light-dark(#333, #ccc);
+	}
+
+	.logo {
+		font-weight: bold;
+		font-size: 1.5rem;
+		padding: 0 1.5rem;
+	}
+</style>
