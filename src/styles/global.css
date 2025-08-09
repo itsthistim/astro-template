@@ -14,10 +14,12 @@
 	--font-mono: "JetBrains Mono", monospace;
 
 	/* Borders */
-	--radius-s: 4px;
+	--radius-xs: 4px;
+	--radius-s: 6px;
 	--radius-m: 8px;
 	--radius-l: 10px;
 	--radius-xl: 16px;
+	--radius-full: 9999px;
 }
 
 /* HTML, body */
@@ -34,7 +36,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
 	background-color: light-dark(#606060, #ababab);
-	border-radius: 8px;
+	border-radius: var(--radius-m);
 }
 
 ::-webkit-scrollbar-thumb:hover {
