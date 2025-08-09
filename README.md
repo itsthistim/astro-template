@@ -4,7 +4,6 @@
 pnpm create astro@latest -- --template itsthistim/astro-template
 ```
 
-
 A minimal Astro template with Docker configuration, local fonts, somewhat opinionated default styles and a few useful components.
 
 ## 📝 Using this template for your own project
