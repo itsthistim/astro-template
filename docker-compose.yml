@@ -1,9 +1,0 @@
-services:
-    app:
-        image: thistim-site
-        container_name: thistim-site
-        build:
-            dockerfile: Dockerfile
-        ports:
-            - "3000:80"
-        restart: unless-stopped
