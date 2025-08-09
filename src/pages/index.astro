@@ -8,8 +8,10 @@ const codeSample = `function greet(name: string) {
 	return "Hello " + name;
 }
 
-console.log(greet("World")); // Prints "Hello World" 0 1 2 3
-`;
+console.log(greet("World"));
+console.log(greet("World")); // Prints "Hello World" 0 1 2 3`;
+
+let insertedReg = new RegExp(/ \+ name/, "gi");
 ---
 
 <Layout title="Hello World!">
@@ -22,7 +24,7 @@ console.log(greet("World")); // Prints "Hello World" 0 1 2 3
 			explicabo porro nobis, recusandae autem. Perferendis quasi minima, eligendi doloremque ut reprehenderit.
 		</p>
 		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem praesentium in unde non esse doloremque neque voluptatibus deleniti eligendi quas!</p>
-		<Code code={codeSample} lang="typescript" />
+		<Code code={codeSample} lang="ts" ins={[6, insertedReg]} del={[5]} title="hello-world.ts" frame="code" />
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, amet incidunt deserunt veniam <a>totam consequuntur</a> debitis eaque possimus illum
 			qui nobis commodi in nisi maxime provident error repellat accusamus vitae quibusdam sunt eligendi dolorem? Doloremque, repellat tempore. Autem quas quasi
