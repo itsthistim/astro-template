@@ -1,6 +1,6 @@
 :root {
 	/* Colors */
-	--color-background: light-dark(#f6f7f8, #1a1a1a);
+	--color-background: light-dark(#fff, #1a1a1a);
 
 	--color-text: light-dark(#222222, #dadada);
 	--color-link: #5151e6;

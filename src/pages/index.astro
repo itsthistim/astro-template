@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Nav from "@/components/Nav.astro";
+import Button from "@/components/Button.astro";
 import { Code } from "astro-expressive-code/components";
 
 const codeSample = `function greet(name: string) {
@@ -30,10 +31,14 @@ console.log(greet("World")); // Prints "Hello World" 0 1 2 3
 			<a>quos reiciendis</a> quo in voluptatum nesciunt inventore molestiae modi. Optio, enim! Laborum animi deleniti reprehenderit consequatur maiores impedit
 			nostrum expedita dicta doloribus?
 		</p>
+
 		<div class="button-group">
 			<Button variant="primary">Primary</Button>
+			<Button variant="secondary">Secondary</Button>
 			<Button variant="primary" disabled>Disabled</Button>
+			<Button variant="secondary" disabled>Disabled 2</Button>
 		</div>
+
 		<p>
 			<span class="text-gradient">Lorem ipsum dolor sit amet</span> consectetur adipisicing elit. Ex consectetur dolor delectus natus cumque repellat, dolores
 			iste molestiae, at deserunt repellendus nihil quae. Hic, repudiandae? Nesciunt animi voluptate quas perferendis provident odio voluptatum libero, asperiores
@@ -66,9 +71,14 @@ console.log(greet("World")); // Prints "Hello World" 0 1 2 3
 	}
 
 	p {
-		margin-bottom: 1.5rem;
+		margin: 0.75rem 0;
 		line-height: 1.6;
 		color: light-dark(#333, #ccc);
 		font-size: 1.1rem;
+	}
+
+	.button-group {
+		display: flex;
+		gap: 1rem;
 	}
 </style>
