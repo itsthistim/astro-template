@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Icon } from "astro-icon/components";
+import Nav from "@/components/Nav.astro";
 import { Code } from "astro-expressive-code/components";
 
 const codeSample = `function greet(name: string) {
@@ -12,42 +12,61 @@ console.log(greet("World")); // Prints "Hello World" 0 1 2 3
 ---
 
 <Layout title="Hello World!">
+	<Nav />
 	<main>
-		<h1>Hello World! <Icon name="ph:globe-hemisphere-west" /></h1>
-		<Code code={codeSample} lang="ts" />
-		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis ipsum magni nihil dolorum consequuntur et, natus asperiores quas saepe nam aliquam!</p>
-		<p class="serif">
-			Tempora exercitationem porro facilis sequi quod molestias fugiat earum corrupti officia, dolorem, ipsum mollitia ipsam, odio expedita laborum quidem natus optio aspernatur atque incidunt
-			architecto. Quidem quam inventore cupiditate alias minima ea voluptatum dolor, dolores necessitatibus voluptas distinctio.
+		<h1>Lorem Ipsum</h1>
+		<p>
+			Lorem ipsum dolor sit amet <a>consectetur adipisicing</a> elit. Ex consectetur dolor delectus natus cumque repellat, dolores iste molestiae, at deserunt
+			repellendus nihil quae. Hic, repudiandae? Nesciunt animi voluptate quas perferendis provident odio voluptatum libero, asperiores doloribus veniam fugit
+			explicabo porro nobis, recusandae autem. Perferendis quasi minima, eligendi doloremque ut reprehenderit.
+		</p>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem praesentium in unde non esse doloremque neque voluptatibus deleniti eligendi quas!</p>
+		<Code code={codeSample} lang="typescript" />
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, placeat sint? Suscipit, amet incidunt deserunt veniam <a
+				>totam consequuntur</a
+			>
+			debitis eaque possimus illum qui nobis commodi in nisi maxime provident error repellat accusamus vitae quibusdam sunt eligendi dolorem? Doloremque, repellat
+			tempore. Autem quas quasi eaque facilis pariatur voluptas eligendi sunt quisquam necessitatibus expedita, reiciendis voluptatibus suscipit doloribus
+			molestiae voluptates porro, blanditiis quis officia tempore consectetur vero ea? Autem voluptatem vero quae accusamus ad animi laboriosam neque recusandae
+			similique, aliquam <a>quos reiciendis</a> quo in voluptatum nesciunt inventore molestiae modi. Optio, enim! Laborum animi deleniti reprehenderit consequatur
+			maiores impedit nostrum expedita dicta doloribus?
 		</p>
 		<p>
-			<i
-				>Neque nemo iure, consequuntur magni saepe debitis eius esse accusamus aliquam ea quae odio possimus. Quis in perferendis, itaque deserunt repudiandae nisi hic id necessitatibus quia
-				fugiat officia!</i>
+			<span class="text-gradient">Lorem ipsum dolor sit amet</span> consectetur adipisicing elit. Ex consectetur dolor delectus natus cumque repellat, dolores
+			iste molestiae, at deserunt repellendus nihil quae. Hic, repudiandae? Nesciunt animi voluptate quas perferendis provident odio voluptatum libero, asperiores
+			doloribus veniam fugit explicabo porro nobis, recusandae autem. <a>Perferendis quasi minima, eligendi doloremque ut reprehenderit.</a>
 		</p>
-		<p class="serif">
-			<i
-				>Laboriosam nostrum iusto veritatis rem culpa ullam labore libero repellendus omnis suscipit, numquam at odio sint eligendi eos qui ducimus modi repudiandae cumque laudantium optio
-				recusandae ab temporibus impedit. Accusantium, porro esse dolores repellendus numquam consequatur quasi temporibus, perferendis iste ipsam in vel.</i>
+		<hr />
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem praesentium in unde non esse doloremque neque voluptatibus deleniti eligendi quas!</p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, placeat sint? Suscipit, amet incidunt deserunt veniam totam consequuntur
+			debitis eaque possimus illum qui nobis commodi in nisi maxime provident error <a>repellat accusamus</a> vitae quibusdam sunt eligendi dolorem? Doloremque,
+			repellat tempore. Autem quas quasi eaque facilis pariatur voluptas eligendi sunt quisquam necessitatibus expedita, reiciendis voluptatibus suscipit doloribus
+			molestiae voluptates porro, blanditiis quis officia tempore consectetur vero ea? Autem voluptatem vero quae accusamus ad <a>animi laboriosam</a> neque
+			recusandae similique, aliquam quos reiciendis quo in voluptatum nesciunt inventore molestiae modi. Optio, enim! Laborum animi deleniti reprehenderit
+			consequatur maiores impedit nostrum expedita dicta doloribus?
 		</p>
 	</main>
 </Layout>
 
 <style>
 	main {
-		margin: auto 50px;
+		padding: 2rem;
+		max-width: 1000px;
+		margin: 0 auto;
 	}
 
 	h1 {
 		font-size: 2.5rem;
-		margin-bottom: 1rem;
+		margin-bottom: 1.5rem;
+		color: light-dark(#000, #fff);
 	}
 
 	p {
-		margin-bottom: 1rem;
-	}
-
-	.serif {
-		font-family: var(--font-serif);
+		margin-bottom: 1.5rem;
+		line-height: 1.6;
+		color: light-dark(#333, #ccc);
+		font-size: 1.1rem;
 	}
 </style>
