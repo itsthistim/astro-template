@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<script>
+	function updateIcons(theme?: string) {
+		const current = theme || document.documentElement.getAttribute("data-theme");
+
+		const sunIcon = document.querySelector(".theme-switcher .light") as HTMLElement;
+		const moonIcon = document.querySelector(".theme-switcher .dark") as HTMLElement;
+
+		if (sunIcon && moonIcon) {
+			sunIcon.style.display = current !== "dark" ? "none" : "block";
+			moonIcon.style.display = current === "dark" ? "none" : "block";
+		}
+	}
+
+	function toggleTheme() {
+		const current = document.documentElement.getAttribute("data-theme");
+		const newTheme = current === "dark" ? "light" : "dark";
+		document.documentElement.setAttribute("data-theme", newTheme);
+		localStorage.setItem("theme", newTheme);
+
+		updateIcons(newTheme);
+	}
+
+	document.addEventListener("theme-initialized", (e) => {
+		const theme = (e as CustomEvent).detail;
+		updateIcons(theme);
+		document.querySelector(".theme-switcher")?.addEventListener("click", toggleTheme);
+	});
+</script>
+
+<div class="theme-switcher">
+	<Icon class="light" name="ph:sun" width={32} height={32} />
+	<Icon class="dark" name="ph:moon" width={32} height={32} />
+</div>

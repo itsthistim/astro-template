@@ -21,12 +21,37 @@ const { title, description = "This is my personal website!", transitions = true 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="darkreader-lock" />
-		<link rel="icon" type="image/svg+xml" href="/favicon_T.svg" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 	</head>
 	<body>
 		<slot />
+		<script>
+			// initialize theme
+			document.addEventListener("astro:page-load", () => {
+				const saved = localStorage.getItem("theme");
+				let theme;
+
+				if (saved && (saved === "light" || saved === "dark")) {
+					document.documentElement.setAttribute("data-theme", saved);
+					console.log("Using saved theme:", saved);
+					theme = saved;
+				} else {
+					const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+					document.documentElement.setAttribute("data-theme", preferred);
+					localStorage.setItem("theme", preferred);
+					console.log("Using preferred theme:", preferred);
+					theme = preferred;
+				}
+
+				document.dispatchEvent(
+					new CustomEvent("theme-initialized", {
+						detail: theme
+					})
+				);
+			});
+		</script>
 	</body>
 </html>
 

@@ -10,8 +10,16 @@
 }
 
 html {
-	color-scheme: light dark;
 	hanging-punctuation: first last;
+	color-scheme: light dark;
+}
+
+html[data-theme="light"] {
+	color-scheme: light;
+}
+
+html[data-theme="dark"] {
+	color-scheme: dark;
 }
 
 body {
