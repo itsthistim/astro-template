@@ -7,8 +7,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"format": "prettier --write .",
-		"deploy": "docker compose up --build"
+		"format": "prettier --write ."
 	},
 	"dependencies": {
 		"astro": "^5.11.0",
