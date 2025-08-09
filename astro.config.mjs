@@ -6,12 +6,7 @@ import path from "path";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		icon(),
-		expressiveCode({
-			themes: ["catppuccin-latte", "catppuccin-mocha"]
-		})
-	],
+	integrations: [icon(), expressiveCode()],
 	vite: {
 		resolve: {
 			alias: {
