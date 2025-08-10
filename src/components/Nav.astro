@@ -5,16 +5,16 @@ import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 
 <div class="navbar">
 	<nav>
-		<div class="logo"><Icon name="ph:planet" width={24} height={24} /> Lorem Ipsum</div>
+		<div class="logo"><h4><Icon name="ph:planet" width={24} height={24} /> Lorem Ipsum</h4></div>
 		<ul>
 			<li><a class="underline-hover" href="/">Dolor</a></li>
 			<li><a class="underline-hover" href="/">Sit Amet</a></li>
 		</ul>
 	</nav>
 	<div class="right-section">
-		<div class="profile">
-			<Icon name="ph:user-circle" width={32} height={32} />
-		</div>
+		<a href="https://github.com/itsthistim/astro-template" target="_blank" aria-label="View source code on GitHub">
+			<Icon name="mdi:github" width={32} height={32} />
+		</a>
 		<ThemeSwitcher />
 	</div>
 </div>
