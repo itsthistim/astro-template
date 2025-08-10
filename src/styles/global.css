@@ -90,3 +90,26 @@ code {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+
+.underline-hover {
+	display: inline-block;
+	position: relative;
+}
+
+.underline-hover::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	transform-origin: bottom right;
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: var(--color-text);
+	transition: transform 0.25s ease-out;
+}
+
+.underline-hover:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}

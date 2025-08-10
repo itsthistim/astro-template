@@ -7,8 +7,8 @@ import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 	<nav>
 		<div class="logo"><Icon name="ph:planet" width={24} height={24} /> Lorem Ipsum</div>
 		<ul>
-			<li><a href="/">Dolor</a></li>
-			<li><a href="/">Sit Amet</a></li>
+			<li><a class="underline-hover" href="/">Dolor</a></li>
+			<li><a class="underline-hover" href="/">Sit Amet</a></li>
 		</ul>
 	</nav>
 	<div class="right-section">
@@ -59,29 +59,9 @@ import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
 	}
 
 	a {
-		display: inline-block;
-		position: relative;
 		color: light-dark(#000, #fff);
 		text-decoration: none;
 		transition: color 0.3s ease;
-	}
-
-	a::after {
-		content: "";
-		position: absolute;
-		width: 100%;
-		transform: scaleX(0);
-		transform-origin: bottom right;
-		height: 2px;
-		bottom: 0;
-		left: 0;
-		background-color: var(--color-text);
-		transition: transform 0.25s ease-out;
-	}
-
-	a:hover::after {
-		transform: scaleX(1);
-		transform-origin: bottom left;
 	}
 
 	.logo {
