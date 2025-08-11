@@ -119,7 +119,7 @@ code {
 	transition: transform 0.25s ease-out;
 }
 
-.underline-hover:hover::after {
+.underline-hover:hover:not(:disabled)::after {
 	transform: scaleX(1);
 	transform-origin: bottom left;
 }

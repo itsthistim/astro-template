@@ -1,27 +1,23 @@
 ---
-interface Props {
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button">, Omit<HTMLAttributes<"a">, "type"> {
 	variant?: "primary" | "secondary" | "outline" | "ghost";
-	type?: "button" | "submit" | "reset";
-	href?: string;
-	disabled?: boolean;
 	loading?: boolean;
+	class?: string;
 }
 
-const { type = "button", variant = "primary", href, loading, disabled } = Astro.props;
+const { variant = "primary", loading = false, class: className = "", ...rest } = Astro.props;
 
-const Anchor = href ? "a" : "div";
+const Anchor = rest.href ? "a" : "button";
 ---
 
-<Anchor class="anchor" {href}>
-	<button class:list={["btn", variant, loading]} type={type} disabled={disabled}>
-		<slot />
-	</button>
+<Anchor class:list={["btn", variant, loading]} {...rest}>
+	<span class="btn-content"><slot /></span>
 </Anchor>
 
 <style>
-	button {
-		font-size: 14px;
-
+	.btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -29,41 +25,70 @@ const Anchor = href ? "a" : "div";
 		padding: 8px 16px;
 		border: none;
 		border-radius: var(--radius-s);
+		text-decoration: none;
+		cursor: pointer;
 		transition:
 			color 0.2s ease,
 			background-color 0.2s ease,
 			border-color 0.2s ease;
 	}
 
+	.btn:disabled {
+		cursor: not-allowed;
+		opacity: 0.8;
+	}
+
 	.primary {
 		color: light-dark(#fff, #000);
 		background-color: light-dark(#171717, #e5e5e5);
 	}
-	.primary:hover {
+	.primary:hover:not(:disabled) {
 		background-color: light-dark(#2e2e2e, #cfcfcf);
 	}
-	.primary:active {
+	.primary:active:not(:disabled) {
 		background-color: light-dark(#3f3f3f, #bfbfbf);
-	}
-	.primary:disabled {
-		background-color: light-dark(#444, #bbb);
-		color: light-dark(#888, #666);
-		cursor: not-allowed;
 	}
 
-	.secondary {
+	.secondary,
+	.outline:hover:not(:disabled) {
 		color: light-dark(#000, #fff);
-		background-color: light-dark(#f0f0f0, #262626);
+		background-color: light-dark(#dfdfdf, #262626);
 	}
-	.secondary:hover {
-		background-color: light-dark(#dfdfdf, #202020);
+	.secondary:hover:not(:disabled),
+	.outline:active:not(:disabled) {
+		background-color: light-dark(#ced1d9, #2f2f31);
 	}
-	.secondary:active {
-		background-color: light-dark(#3f3f3f, #bfbfbf);
+	.secondary:active:not(:disabled) {
+		background-color: light-dark(#bbbbbb, #424242);
 	}
-	.secondary:disabled {
-		background-color: light-dark(#444, #bbb);
-		color: light-dark(#888, #666);
-		cursor: not-allowed;
+
+	.outline {
+		color: light-dark(#000, #fff);
+		border: 1px solid light-dark(#171717, #e5e5e5);
+		background-color: transparent;
+	}
+
+	.ghost {
+		color: light-dark(#000, #fff);
+		background-color: transparent;
+	}
+	.ghost .btn-content {
+		position: relative;
+	}
+	.ghost .btn-content::after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		bottom: 0;
+		left: 0;
+		background-color: var(--color-text);
+		transform: scaleX(0);
+		transform-origin: bottom center;
+		transition: transform 0.25s ease-out;
+	}
+	.ghost:hover:not(:disabled) .btn-content::after {
+		transform: scaleX(1);
+		transform-origin: bottom center;
 	}
 </style>

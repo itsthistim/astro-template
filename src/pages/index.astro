@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Nav from "@/components/Nav.astro";
 import Button from "@/components/Button.astro";
 import { Code } from "astro-expressive-code/components";
+import { Icon } from "astro-icon/components";
 
 const codeSample = `function greet(name: string) {
 	return "Hello " + name;
@@ -35,10 +36,17 @@ let insertedReg = new RegExp(/ \+ name/, "gi");
 		</p>
 
 		<div class="button-group">
-			<Button variant="primary">Primary</Button>
-			<Button variant="secondary">Secondary</Button>
-			<Button variant="primary" disabled>Disabled</Button>
-			<Button variant="secondary" disabled>Disabled 2</Button>
+			<Button class="btn" variant="primary"><Icon name="ph:arrow-right" /> Primary</Button>
+			<Button class="btn" variant="secondary">Secondary</Button>
+			<Button class="btn" variant="outline">Outline</Button>
+			<Button class="btn" variant="ghost">Ghost</Button>
+		</div>
+
+		<div class="button-group">
+			<Button class="btn" variant="primary" disabled><Icon name="ph:arrow-right" /> Primary</Button>
+			<Button class="btn" variant="secondary" disabled>Secondary</Button>
+			<Button class="btn" variant="outline" disabled>Outline</Button>
+			<Button class="btn" variant="ghost" disabled>Ghost</Button>
 		</div>
 
 		<p>
@@ -80,5 +88,15 @@ let insertedReg = new RegExp(/ \+ name/, "gi");
 	.button-group {
 		display: flex;
 		gap: 1rem;
+		margin: 1.5rem 0;
+	}
+
+	[data-icon] {
+		margin-right: 0.5rem;
+		transition: transform 0.2s ease;
+	}
+
+	.btn:hover:not(:disabled) [data-icon] {
+		transform: translateX(0.2rem);
 	}
 </style>
