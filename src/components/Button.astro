@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"button">, Omit<HTMLAttributes<"a">, "type"> {
@@ -7,13 +8,16 @@ interface Props extends HTMLAttributes<"button">, Omit<HTMLAttributes<"a">, "typ
 	class?: string;
 }
 
-const { variant = "primary", loading = false, class: className = "", ...rest } = Astro.props;
-
+let { variant = "primary", loading, class: className = "", ...rest } = Astro.props;
 const Anchor = rest.href ? "a" : "button";
+
+rest.disabled = loading || rest.disabled;
 ---
 
-<Anchor class:list={["btn", variant, loading]} {...rest}>
-	<span class="btn-content"><slot /></span>
+<Anchor class:list={["btn", className, variant, { loading }]} {...rest}>
+	<span class="btn-content">
+		{loading && <Icon class="loading-icon" name="line-md:loading-twotone-loop" />}<slot />
+	</span>
 </Anchor>
 
 <style>
@@ -36,6 +40,15 @@ const Anchor = rest.href ? "a" : "button";
 	.btn:disabled {
 		cursor: not-allowed;
 		opacity: 0.8;
+	}
+
+	.loading {
+		position: relative;
+		cursor: wait !important;
+	}
+
+	.loading-icon {
+		margin-right: 0.3rem;
 	}
 
 	.primary {
