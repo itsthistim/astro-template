@@ -11,7 +11,14 @@ interface Props extends HTMLAttributes<"button">, Omit<HTMLAttributes<"a">, "typ
 let { variant = "primary", loading, class: className = "", ...rest } = Astro.props;
 const Anchor = rest.href ? "a" : "button";
 
-rest.disabled = loading || rest.disabled;
+if (rest.disabled) {
+	rest["aria-disabled"] = "true";
+}
+
+if (loading) {
+	rest.disabled = true;
+	rest["aria-busy"] = "true";
+}
 ---
 
 <Anchor class:list={["btn", className, variant, { loading }]} {...rest}>
