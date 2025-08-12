@@ -1,0 +1,5 @@
+[phases.setup]
+nixPkgs = ["nodejs", "pnpm"]
+
+[variables]
+NODE_VERSION = "22"
