@@ -1,8 +1,8 @@
 :root {
 	/* Colors */
-	--color-background: light-dark(#fff, #1a1a1a);
+	--color-background: light-dark(#fff, #11111b);
 
-	--color-text: light-dark(#222222, #dadada);
+	--color-text: light-dark(#000, #fff);
 	--color-link: #5151e6;
 	--color-link-hover: #3b3be6;
 	--color-code: var(--color-text);

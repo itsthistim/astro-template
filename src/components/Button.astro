@@ -46,7 +46,7 @@ if (loading) {
 
 	.btn:disabled {
 		cursor: not-allowed;
-		opacity: 0.8;
+		opacity: 0.7;
 	}
 
 	.loading {
@@ -71,7 +71,7 @@ if (loading) {
 
 	.secondary,
 	.outline:hover:not(:disabled) {
-		color: light-dark(#000, #fff);
+		color: var(--color-text);
 		background-color: light-dark(#dfdfdf, #262626);
 	}
 	.secondary:hover:not(:disabled),
@@ -83,13 +83,13 @@ if (loading) {
 	}
 
 	.outline {
-		color: light-dark(#000, #fff);
+		color: var(--color-text);
 		border: 1px solid light-dark(#171717, #e5e5e5);
 		background-color: transparent;
 	}
 
 	.ghost {
-		color: light-dark(#000, #fff);
+		color: var(--color-text);
 		background-color: transparent;
 	}
 	.ghost .btn-content {
