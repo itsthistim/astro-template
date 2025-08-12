@@ -59,32 +59,32 @@ if (loading) {
 	}
 
 	.primary {
-		color: light-dark(#fff, #000);
-		background-color: light-dark(#171717, #e5e5e5);
+		color: light-dark(white, black);
+		background-color: light-dark(hsl(0, 0%, 10%), hsl(0, 0%, 90%));
 	}
 	.primary:hover:not(:disabled) {
-		background-color: light-dark(#2e2e2e, #cfcfcf);
+		background-color: light-dark(hsl(0, 0%, 18%), hsl(0, 0%, 80%));
 	}
 	.primary:active:not(:disabled) {
-		background-color: light-dark(#3f3f3f, #bfbfbf);
+		background-color: light-dark(hsl(0, 0%, 26%), hsl(0, 0%, 70%));
 	}
 
 	.secondary,
 	.outline:hover:not(:disabled) {
 		color: var(--color-text);
-		background-color: light-dark(#dfdfdf, #262626);
+		background-color: light-dark(hsl(224, 13%, 85%), hsl(240, 23%, 20%));
 	}
 	.secondary:hover:not(:disabled),
 	.outline:active:not(:disabled) {
-		background-color: light-dark(#ced1d9, #2f2f31);
+		background-color: light-dark(hsl(224, 13%, 77%), hsl(240, 23%, 25%));
 	}
 	.secondary:active:not(:disabled) {
-		background-color: light-dark(#bbbbbb, #424242);
+		background-color: light-dark(hsl(224, 13%, 69%), hsl(240, 23%, 30%));
 	}
 
 	.outline {
 		color: var(--color-text);
-		border: 1px solid light-dark(#171717, #e5e5e5);
+		border: 1px solid light-dark(hsl(0, 0%, 10%), hsl(0, 0%, 90%));
 		background-color: transparent;
 	}
 
