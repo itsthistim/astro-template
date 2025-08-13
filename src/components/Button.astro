@@ -22,9 +22,7 @@ if (loading) {
 ---
 
 <Anchor class:list={["btn", className, variant, { loading }]} {...rest}>
-	<span class="btn-content">
-		{loading && <Icon class="loading-icon" name="line-md:loading-twotone-loop" />}<slot />
-	</span>
+	<span class="btn-content">{loading && <Icon class="loading-icon" name="line-md:loading-twotone-loop" />}<slot /></span>
 </Anchor>
 
 <style>
